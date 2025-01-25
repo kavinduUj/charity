@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id ("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -33,6 +35,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    viewBinding.enable = true
 }
 
 dependencies {
@@ -45,4 +49,33 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.hilt.android)
+    kapt (libs.hilt.compiler)
+    kapt (libs.androidx.hilt.compiler)
+
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    // coroutine
+    implementation(libs.kotlinx.coroutines.android)
+
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation (libs.gson)
+    implementation(libs.converter.scalars)
+
+    //
+    implementation (libs.glide)
+    annotationProcessor(libs.compiler)
+
+    implementation(libs.easyprefs)
+    implementation(libs.android.spinkit)
+    implementation(libs.shimmer)
+
+}
+
+kapt {
+    correctErrorTypes = true
 }

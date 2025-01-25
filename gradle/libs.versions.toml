@@ -9,6 +9,17 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.3"
 constraintlayout = "2.2.0"
+hiltAndroid = "2.49"
+hiltCompiler = "1.2.0"
+lifecycleViewmodelKtx = "2.8.7"
+kotlinxCoroutinesAndroid = "1.8.1"
+converterScalars = "2.9.0"
+gson = "2.10.1"
+easyprefs = "1.10.0"
+glide = "4.15.1"
+compiler = "4.15.1"
+androidSpinkit = "1.4.0"
+shimmer = "0.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -19,6 +30,26 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroid" }
+androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hiltCompiler" }
+
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleViewmodelKtx" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterScalars" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterScalars" }
+converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "converterScalars" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
+
+easyprefs = { module = "com.pixplicity.easyprefs:EasyPrefs", version.ref = "easyprefs" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+
+android-spinkit = { module = "com.github.ybq:Android-SpinKit", version.ref = "androidSpinkit" }
+shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
