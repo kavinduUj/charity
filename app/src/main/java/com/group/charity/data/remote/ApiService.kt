@@ -3,11 +3,11 @@ package com.group.charity.data.remote
 import com.group.charity.data.dto.LoginDto
 import com.group.charity.data.dto.SignUpDto
 import com.group.charity.data.dto.allEvent.EventListResponse
+import com.group.charity.data.dto.eventDetails.EventDetailsResponse
 import com.group.util.EndPoints
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
-import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -34,4 +34,10 @@ interface ApiService {
         @Header("Authorization") authHeader: String,
         @Body path: HashMap<String,Any>
     ): SignUpDto
+
+    @GET(EndPoints.EVENT_DETAILS)
+    suspend fun eventDetails(
+        @Header("Authorization") authHeader: String,
+        @Path("eventId") path: String
+    ): EventDetailsResponse
 }

@@ -3,6 +3,7 @@ package com.group.charity.data.repository
 
 import com.group.charity.data.dto.SignUpDto
 import com.group.charity.data.dto.allEvent.EventListResponse
+import com.group.charity.data.dto.eventDetails.EventDetailsResponse
 import com.group.charity.data.remote.ApiService
 import com.group.charity.domain.repository.EventRepo
 import javax.inject.Inject
@@ -17,6 +18,12 @@ class EventImpl @Inject constructor(
     override suspend fun createEvent(tok: String, hashMap: HashMap<String, Any>): SignUpDto {
         return apiService.createEvent(
             tok,hashMap
+        )
+    }
+
+    override suspend fun eventDetails(tok: String, id: String): EventDetailsResponse {
+        return apiService.eventDetails(
+            tok,id
         )
     }
 

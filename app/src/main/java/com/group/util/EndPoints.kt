@@ -5,4 +5,5 @@ object EndPoints {
     const val SIGN_UP = "auth/register"
     const val ALL_EVENT = "events/allEvents/{status}"
     const val ADD_EVENT = "events/add"
+    const val EVENT_DETAILS = "events/{eventId}"
 }

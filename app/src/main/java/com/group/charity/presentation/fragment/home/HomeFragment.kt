@@ -14,6 +14,7 @@ import com.group.charity.data.dto.allEvent.EventListResponse
 import com.group.charity.databinding.HomeFragmentBinding
 import com.group.charity.presentation.activity.BaseActivity
 import com.group.charity.presentation.fragment.home.add.CreateEvent
+import com.group.charity.presentation.fragment.home.details.EventDetails
 import com.group.util.CommonState
 import com.group.util.PrefData
 import com.group.util.apiError
@@ -84,7 +85,12 @@ class HomeFragment:Fragment() {
 
     private fun setDataToAdapter(data: EventListResponse) {
         val gridLayoutManager =GridLayoutManager(requireContext(),1)
-        val adapter = EventListAdapter(data)
+        val adapter = EventListAdapter(data) { event->
+            parentFragmentManager.replaceFragment(
+                EventDetails(event),
+                R.id.homeFrame
+            )
+        }
         binding.eventRec.layoutManager = gridLayoutManager
         binding.eventRec.adapter = adapter
     }

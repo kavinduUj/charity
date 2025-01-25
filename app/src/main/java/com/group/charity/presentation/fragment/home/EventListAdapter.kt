@@ -13,7 +13,8 @@ import com.group.util.base64ToBitmap
 import com.group.util.toFormattedDate
 
 class EventListAdapter(
-    private val data: EventListResponse
+    private val data: EventListResponse,
+    private val selectEvent: (EventListResponseItem) -> Unit
 ) : RecyclerView.Adapter<EventListAdapter.ViewHolder>() {
 
     lateinit var binding: EventAdapterViewBinding
@@ -45,6 +46,10 @@ class EventListAdapter(
                     .error(R.drawable.event_cover)
                     .centerCrop()
                     .into(binding.coverImg)
+
+                itemView.setOnClickListener {
+                    selectEvent(event)
+                }
             }
         }
     }
