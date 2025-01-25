@@ -11,6 +11,10 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import android.content.ContentResolver
+import android.net.Uri
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 
 fun FragmentManager.replaceFragment(
     fragment: Fragment,
@@ -59,3 +63,52 @@ fun String.base64ToBitmap(): Bitmap? {
         null // Return null if conversion fails
     }
 }
+
+fun Uri.toBase64(contentResolver: ContentResolver): String? {
+    return try {
+        // Open an InputStream from the Uri
+        val inputStream: InputStream? = contentResolver.openInputStream(this)
+        inputStream?.let {
+            // Decode InputStream to Bitmap
+            val bitmap = BitmapFactory.decodeStream(it)
+
+            // Convert Bitmap to ByteArray
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream) // Adjust quality if needed
+            val byteArray = byteArrayOutputStream.toByteArray()
+
+            // Encode ByteArray to Base64
+            android.util.Base64.encodeToString(byteArray, android.util.Base64.DEFAULT)
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null // Return null if conversion fails
+    }
+}
+fun Uri.toCompressedBase64(contentResolver: ContentResolver, maxWidth: Int, maxHeight: Int, quality: Int): String? {
+    return try {
+        val inputStream = contentResolver.openInputStream(this)
+        val originalBitmap = BitmapFactory.decodeStream(inputStream)
+
+        // Scale down the Bitmap
+        val scaledBitmap = Bitmap.createScaledBitmap(
+            originalBitmap,
+            maxWidth,
+            maxHeight,
+            true
+        )
+
+        // Convert to ByteArray with reduced quality
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        scaledBitmap.compress(Bitmap.CompressFormat.JPEG, quality, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+
+        // Encode ByteArray to Base64
+        android.util.Base64.encodeToString(byteArray, android.util.Base64.DEFAULT)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
+}
+
+

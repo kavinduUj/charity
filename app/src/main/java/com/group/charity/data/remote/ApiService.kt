@@ -28,4 +28,10 @@ interface ApiService {
         @Header("Authorization") authHeader: String,
         @Path("status") path: String
     ): EventListResponse
+
+    @POST(EndPoints.ADD_EVENT)
+    suspend fun createEvent(
+        @Header("Authorization") authHeader: String,
+        @Body path: HashMap<String,Any>
+    ): SignUpDto
 }
