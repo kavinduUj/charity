@@ -1,5 +1,6 @@
 package com.group.charity.presentation.fragment.auth.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.gson.Gson
 import com.group.charity.R
 import com.group.charity.presentation.activity.BaseActivity
-import com.group.charity.presentation.activity.login.LoginActivity
+import com.group.charity.presentation.activity.home.HomeActivity
 import com.group.charity.presentation.fragment.auth.signUp.SignUpFragment
 import com.group.util.CommonState
 import com.group.util.PrefData
@@ -72,6 +73,7 @@ class LoginFragment : Fragment() {
                         logOther("userLogin res: ${Gson().toJson(result.data)}")
                         Prefs.putString(PrefData.USER_TOKEN, result.data.token)
                         Prefs.putString(PrefData.USER_ID, result.data.userId)
+                        startActivity(Intent(requireContext(), HomeActivity::class.java))
                         cancel()
                     }
                     is CommonState.Error -> {

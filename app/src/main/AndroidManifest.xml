@@ -18,10 +18,13 @@
         android:theme="@style/Theme.Charity"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.activity.login.LoginActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:noHistory="true"
+            android:name=".presentation.activity.home.HomeActivity"
             android:exported="false" />
+        <activity
+            android:name=".presentation.activity.login.LoginActivity"
+            android:exported="false"
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

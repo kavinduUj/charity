@@ -12,4 +12,9 @@
     <string name="forget_password">Forget Password?</string>
     <string name="don_t_you_have_an_account">Don\'t you have an account?</string>
     <string name="signup_">Sign up</string>
+    <string name="discover_and_join_community_event">Discover and Join Community Event</string>
+    <string name="join_hands_and_be_a_part_of_something_meaningful">Join hands and be a part of something meaningful</string>
+    <string name="search_for_event">search for event</string>
+    <string name="add_event">Add Event</string>
+    <string name="upcoming_events">Upcoming Events</string>
 </resources>
