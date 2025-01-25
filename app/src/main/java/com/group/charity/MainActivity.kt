@@ -1,14 +1,33 @@
 package com.group.charity
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.util.Log
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.google.gson.Gson
+import com.group.charity.databinding.ActivityMainBinding
+import com.group.charity.presentation.activity.BaseActivity
+import com.group.charity.presentation.activity.login.LoginActivity
+import com.group.charity.presentation.fragment.auth.login.LoginFragment
+import com.group.charity.presentation.fragment.auth.login.LoginViewModel
+import com.group.util.CommonState
+import com.group.util.apiError
+import com.group.util.replaceFragment
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : BaseActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.getStart.setOnClickListener {
+            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+        }
     }
 }

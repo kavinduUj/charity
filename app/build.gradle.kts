@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.hilt.android)
     kapt (libs.hilt.compiler)
     kapt (libs.androidx.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.fragment)
 
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
