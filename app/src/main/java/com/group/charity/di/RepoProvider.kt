@@ -15,8 +15,7 @@ class RepoProvider {
 
     @Provides
     @Singleton
-    fun userLogin(apiService: ApiService) : AuthRepo {
+    fun authentication(apiService: ApiService) : AuthRepo {
         return AuthImpl(apiService)
     }
-
 }

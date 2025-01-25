@@ -1,6 +1,7 @@
 package com.group.charity.data.remote
 
 import com.group.charity.data.dto.LoginDto
+import com.group.charity.data.dto.SignUpDto
 import com.group.util.EndPoints
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -11,4 +12,9 @@ interface ApiService {
     suspend fun userLogin(
         @Body body: HashMap<String,String>
     ) : LoginDto
+
+    @POST(EndPoints.SIGN_UP)
+    suspend fun userSignUp(
+        @Body body: HashMap<String,String>
+    ) : SignUpDto
 }

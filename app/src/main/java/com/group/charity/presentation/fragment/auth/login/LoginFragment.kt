@@ -1,7 +1,6 @@
 package com.group.charity.presentation.fragment.auth.login
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +10,22 @@ import dagger.hilt.android.AndroidEntryPoint
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.gson.Gson
+import com.group.charity.R
 import com.group.charity.presentation.activity.BaseActivity
+import com.group.charity.presentation.activity.login.LoginActivity
+import com.group.charity.presentation.fragment.auth.signUp.SignUpFragment
 import com.group.util.CommonState
+import com.group.util.PrefData
 import com.group.util.apiError
+import com.group.util.logErr
+import com.group.util.logOther
+import com.group.util.replaceFragment
+import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginFragment: Fragment() {
+class LoginFragment : Fragment() {
 
     private lateinit var binding: LoginFragmentBinding
     private val loginViewModel by viewModels<LoginViewModel>()
@@ -39,30 +46,41 @@ class LoginFragment: Fragment() {
             loginBtn.setOnClickListener {
                 userLogin()
             }
+            signUp.setOnClickListener {
+                parentFragmentManager.replaceFragment(
+                    SignUpFragment(),
+                    R.id.loginFrame
+                )
+            }
         }
     }
-
     private fun userLogin() {
         val hashMap: HashMap<String,String> = HashMap()
-        hashMap["email"] = "abc@gmail.com"
-        hashMap["password"] = "Test123@"
+        hashMap["email"] = binding.email.text.toString()
+        hashMap["password"] = binding.password.text.toString()
 
         loginViewModel.userLogin(hashMap)
         lifecycleScope.launch {
             loginViewModel.loginStateFlow.collect { result->
                 when(result) {
                     is CommonState.Loading -> {
-                        Log.i("loginData","isLoading")
+                        logOther("userLogin req: ${Gson().toJson(hashMap)}")
                         baseActivity.loading.isVisible()
                     }
                     is CommonState.Success -> {
                         baseActivity.loading.isGone()
-                        Log.i("loginData", "data: ${Gson().toJson(result.data)}")
+                        logOther("userLogin res: ${Gson().toJson(result.data)}")
+                        Prefs.putString(PrefData.USER_TOKEN, result.data.token)
+                        Prefs.putString(PrefData.USER_ID, result.data.userId)
                         cancel()
                     }
                     is CommonState.Error -> {
                         baseActivity.loading.isGone()
-                        Log.i("loginData", "data: ${result.message}")
+                        parentFragmentManager.apiError(
+                            message = result.message
+                        )
+                        cancel()
+                        logErr("userLogin req: ${Gson().toJson(result.message)}")
                     }
                 }
             }
