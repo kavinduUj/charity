@@ -9,13 +9,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.gson.Gson
+import com.group.charity.R
 import com.group.charity.data.dto.allEvent.EventListResponse
 import com.group.charity.databinding.HomeFragmentBinding
 import com.group.charity.presentation.activity.BaseActivity
+import com.group.charity.presentation.fragment.home.add.CreateEvent
 import com.group.util.CommonState
 import com.group.util.PrefData
 import com.group.util.apiError
 import com.group.util.logOther
+import com.group.util.replaceFragment
 import com.pixplicity.easyprefs.library.Prefs
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.cancel
@@ -39,6 +42,12 @@ class HomeFragment:Fragment() {
 
     private fun init() {
         baseActivity = requireActivity() as BaseActivity
+        binding.addEvent.setOnClickListener {
+            parentFragmentManager.replaceFragment(
+                CreateEvent(),
+                R.id.homeFrame
+            )
+        }
         getEvent()
         logOther("userToken: ${Prefs.getString(PrefData.USER_TOKEN)}")
     }

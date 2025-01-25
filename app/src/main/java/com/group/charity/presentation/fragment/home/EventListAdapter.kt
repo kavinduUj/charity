@@ -9,6 +9,7 @@ import com.group.charity.R
 import com.group.charity.data.dto.allEvent.EventListResponse
 import com.group.charity.data.dto.allEvent.EventListResponseItem
 import com.group.charity.databinding.EventAdapterViewBinding
+import com.group.util.base64ToBitmap
 import com.group.util.toFormattedDate
 
 class EventListAdapter(
@@ -39,7 +40,7 @@ class EventListAdapter(
                 location.text = event.location
                 date.text = event.startDate.toFormattedDate()
                 Glide.with(context)
-                    .load(event.images[0])
+                    .load(if (event.images[0].contains("http"))event.images[0] else event.images[0].base64ToBitmap())
                     .placeholder(R.drawable.event_cover)
                     .error(R.drawable.event_cover)
                     .centerCrop()

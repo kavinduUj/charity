@@ -1,9 +1,13 @@
 package com.group.util
 
-import android.content.Context
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.group.charity.R
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import java.io.FileOutputStream
+import java.util.Base64
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -41,5 +45,17 @@ fun String.toFormattedDate(): String {
         outputFormat.format(date)
     } catch (e: Exception) {
         this
+    }
+}
+fun String.base64ToBitmap(): Bitmap? {
+    return try {
+        // Decode the Base64 string into a byte array
+        val decodedBytes = Base64.getDecoder().decode(this)
+
+        // Convert the byte array to a Bitmap
+        BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null // Return null if conversion fails
     }
 }

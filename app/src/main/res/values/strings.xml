@@ -17,4 +17,7 @@
     <string name="search_for_event">search for event</string>
     <string name="add_event">Add Event</string>
     <string name="upcoming_events">Upcoming Events</string>
+    <string name="add_event_">Add Event</string>
+    <string name="select_cover_photo">Select cover photo</string>
+    <string name="event_name">Event Name</string>
 </resources>
