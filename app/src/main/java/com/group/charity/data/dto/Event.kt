@@ -1,11 +1,10 @@
-package com.group.charity.data.dto.allEvent
+package com.group.charity.data.dto
 
-data class EventListResponseItem(
+data class Event(
     val __v: Int,
     val _id: String,
     val aboutEvent: String,
     val attendUsers: List<String>,
-    val backgroundImage: String,
     val comments: List<Comment>,
     val endDate: String,
     val eventName: String,

@@ -1,6 +1,7 @@
 package com.group.charity.data.repository
 
 
+import com.group.charity.data.dto.AttendEvent
 import com.group.charity.data.dto.SignUpDto
 import com.group.charity.data.dto.allEvent.EventListResponse
 import com.group.charity.data.dto.eventDetails.EventDetailsResponse
@@ -23,6 +24,12 @@ class EventImpl @Inject constructor(
 
     override suspend fun eventDetails(tok: String, id: String): EventDetailsResponse {
         return apiService.eventDetails(
+            tok,id
+        )
+    }
+
+    override suspend fun attendEvent(tok: String, id: String): AttendEvent {
+        return apiService.attendEvent(
             tok,id
         )
     }

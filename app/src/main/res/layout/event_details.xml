@@ -82,7 +82,6 @@
 
         </LinearLayout>
     </FrameLayout>
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -127,5 +126,34 @@
                 android:textSize="12sp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:elevation="10dp"
+        android:id="@+id/iamIn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/custom_edit_text"
+            android:drawableEnd="@drawable/baseline_back_hand_24"
+            android:drawablePadding="7dp"
+            android:drawableTint="@color/green"
+            android:gravity="center"
+            android:paddingStart="80dp"
+            android:id="@+id/inText"
+            android:paddingEnd="80dp"
+            android:text="i'm in!"
+            android:textColor="@color/green"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

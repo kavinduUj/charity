@@ -1,5 +1,6 @@
 package com.group.charity.data.remote
 
+import com.group.charity.data.dto.AttendEvent
 import com.group.charity.data.dto.LoginDto
 import com.group.charity.data.dto.SignUpDto
 import com.group.charity.data.dto.allEvent.EventListResponse
@@ -40,4 +41,10 @@ interface ApiService {
         @Header("Authorization") authHeader: String,
         @Path("eventId") path: String
     ): EventDetailsResponse
+
+    @POST(EndPoints.ATTEND_EVENT)
+    suspend fun attendEvent(
+        @Header("Authorization") authHeader: String,
+        @Path("eventId") path: String
+    ): AttendEvent
 }
